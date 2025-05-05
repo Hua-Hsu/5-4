@@ -497,3 +497,16 @@ if (e.code === "Tab" && document.activeElement == GlobalRoundsModeLogCancelBtn &
     return;
 }
 }
+
+function deleteRound() {
+  const rounds = JSON.parse(localStorage.getItem('rounds')) || [];
+  const updated = rounds.filter(r => r.id !== currentRoundId);
+  localStorage.setItem('rounds', JSON.stringify(updated));
+  populateRoundsTable();
+  closeModal();
+}
+
+function closeModal() {
+  document.getElementById('confirmDeleteModal').style.display = 'none';
+}
+
